@@ -24,37 +24,27 @@ def view_tasks():
     print(f"To-Do List: {to_do_list}")
 
 def complete_task():
-    try:
-        check_task_status = (input("What task would you like to mark complete?: "))
-        update_task_status = (f"{check_task_status}: Status: Incomplete")
-        for task in to_do_list:
-            if task == update_task_status:
-                to_do_list.remove(task)
-                task_status_update = "Status: Complete"
-                task_item_update = (f"{check_task_status}: {task_status_update}")
-                to_do_list.append(task_item_update)
-                print(task_item_update)
-            elif task != update_task_status:
-                raise TaskNotFound("The task you have entered is not on the To-Do List. Please try again.")
-    except TaskNotFound as e:
-        print(f"Error: {e.message}")
+    check_task_status = (input("What task would you like to mark complete?: "))
+    update_task_status = (f"{check_task_status}: Status: Incomplete")
+    for task in to_do_list:
+        if task == update_task_status:
+            to_do_list.remove(task)
+            task_status_update = "Status: Complete"
+            task_item_update = (f"{check_task_status}: {task_status_update}")
+            to_do_list.append(task_item_update)
+            print(task_item_update)
 
 def delete_task():
-    try:
-        delete_task = (input("What task would you like to delete?: "))
-        incomplete_task = (f"{delete_task}: Status: Incomplete")
-        complete_task = (f"{delete_task}: Status: Complete")
-        for task in to_do_list:
-            if task == complete_task:
-                to_do_list.remove(task)
-                print(f"{delete_task} has been removed from the To-Do List.")
-            elif task == incomplete_task:
-                to_do_list.remove(task)
-                print(f"{delete_task} has been removed from the To-Do List.")
-            else:
-                raise TaskNotFound("The task you have entered is not on the To-Do List. Please try again.")
-    except TaskNotFound as e:
-        print(f"Error: {e.message}")
+    delete_task = (input("What task would you like to delete?: "))
+    incomplete_task = (f"{delete_task}: Status: Incomplete")
+    complete_task = (f"{delete_task}: Status: Complete")
+    for task in to_do_list:
+        if task == complete_task:
+            to_do_list.remove(task)
+            print(f"{delete_task} has been removed from the To-Do List.")
+        elif task == incomplete_task:
+            to_do_list.remove(task)
+            print(f"{delete_task} has been removed from the To-Do List.")
 
 start_app()
 while True:
